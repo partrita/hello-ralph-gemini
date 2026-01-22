@@ -7,7 +7,7 @@
 - [ ] Implement the "Compare Guess" logic (returns High, Low, or Correct)
 - [ ] Create the main game loop connecting these functions
 - [ ] Add a "Game Over" or "Play Again" feature
-- [ ] Implement robust error handling for invalid user input (e.g., non-numeric gue ses).
+- [ ] Implement robust error handling for invalid user input (e.g., non-numeric gueses).
 - [ ] Implement a guess limit for the player
 - [ ] Implement a high score (fewest attempts) tracking feature
 - [ ] Add initial game instructions to be displayed at the start
