@@ -1,52 +1,59 @@
-# Hello Ralph: The Ralph Loop with the Gemini CLI
+# Hello Ralph: Gemini CLI를 이용한 Ralph 루프
 
-This repo demonstrates a minimal implementation of the **Ralph** technique using the Google Gemini CLI. It's a self-contained autonomous loop that reads specs, writes code, and builds a Python game from scratch.
+이 저장소는 Google Gemini CLI를 사용하여 **Ralph** 기술의 최소 구현을 보여줍니다. 이는 사양을 읽고, 코드를 작성하며, 처음부터 Python 게임을 빌드하는 자립형 자율 루프입니다.
 
-## The Concept
-[Ralph](https://ghuntley.com/ralph/) replaces the idea of a single, long-running AI session with a continuous loop of fresh, ephemeral agents.
+## 개념
+[Ralph](https://ghuntley.com/ralph/)는 단일 장기 실행 AI 세션의 아이디어를 신선하고 수명이 짧은 에이전트들의 연속적인 루프로 대체합니다.
 
-1.  **Amnesia by Design**: Each iteration starts a brand new agent with zero context from the previous turn.
-2.  **State is on Disk**: The "memory" isn't in the context window; it's in `fix_plan.md` and the file system.
-3.  **Atomic Progress**: The agent reads the plan, executes exactly **one** task, updates the plan, and dies.
-4.  **Relentless Iteration**: The bash loop revives the agent until the job is done.
+1.  **설계에 의한 기억 상실**: 각 반복은 이전 턴의 컨텍스트가 전혀 없는 새로운 에이전트로 시작합니다.
+2.  **상태는 디스크에 저장**: "메모리"는 컨텍스트 윈도우에 있는 것이 아니라 `fix_plan.md`와 파일 시스템에 있습니다.
+3.  **원자적 진행**: 에이전트는 계획을 읽고, 정확히 **하나**의 작업을 실행하며, 계획을 업데이트하고 종료됩니다.
+4.  **끈질긴 반복**: bash 루프는 작업이 완료될 때까지 에이전트를 다시 살려냅니다.
 
-## Quick Start
+## 빠른 시작
 
-### 1. Setup
-Install and authenticate the [Gemini CLI](https://github.com/google-gemini/gemini-cli):
+### 1. 설정
+[Gemini CLI](https://github.com/google-gemini/gemini-cli)를 설치하고 인증하세요:
 ```bash
 npm install -g @google/gemini-cli
 gemini auth login
 ```
 
-### 2. Run the Loop
-Clone this repo, cd into it, and fire up the engine:
+### 2. 루프 실행
+이 저장소를 클론하고, 해당 디렉토리로 이동한 후 엔진을 가동하세요. 직접 루프를 실행하거나 제공된 `Run.sh` 스크립트를 사용할 수 있습니다:
 
+**방법 A: Run.sh 사용 (권장)**
+```bash
+chmod +x Run.sh
+./Run.sh
+```
+
+**방법 B: 직접 실행**
 ```bash
 while :; do
   echo "--------------------------------"
-  echo "♻️  RESTARTING AGENT..."
+  echo "♻️  에이전트 재시작 중..."
   cat PROMPT.md | gemini --yolo
   sleep 0.5
 done
 ```
 
-**What's happening here?**
-*   We pipe `PROMPT.md` (the "brain") into the `gemini` command.
-*   `--yolo`: **Crucial.** This flag auto-approves all tool use (file writing, shell commands). Without it, you'd have to approve every single action manually.
+**여기서 무슨 일이 일어나고 있나요?**
+*   `PROMPT.md`("두뇌")를 `gemini` 명령어로 파이프합니다.
+*   `--yolo`: **중요합니다.** 이 플래그는 모든 도구 사용(파일 작성, 쉘 명령어)을 자동 승인합니다. 이 플래그가 없으면 모든 동작을 수동으로 승인해야 합니다.
 
-### 3. Watch & Play
-Sit back. You'll see the `src/` directory populate as the agent ticks off items in `fix_plan.md`.
+### 3. 관찰 및 플레이
+편하게 지켜보세요. 에이전트가 `fix_plan.md`의 항목들을 체크해 나감에 따라 `src/` 디렉토리가 채워지는 것을 볼 수 있습니다.
 
-When you see **`🏆 PROJECT_VICTORY`**, hit `Ctrl+C` to stop the loop.
+**`🏆 PROJECT_VICTORY`**가 보이면 `Ctrl+C`를 눌러 루프를 중단하세요.
 
-Then, play the game:
+그 다음, 게임을 실행하세요:
 ```bash
 python3 src/main.py
 ```
 
-## Project Structure
-*   **`PROMPT.md`**: The system instructions. This is the "Sniper" protocol that enforces the atomic behavior.
-*   **`fix_plan.md`**: The project manager. It tracks what is done `[x]` and what is left `[ ]`.
-*   **`specs/game.md`**: The actual requirements for the software we are building.
-*   **`src/`**: The output directory for the generated code.
+## 프로젝트 구조
+*   **`PROMPT.md`**: 시스템 지침. 원자적 동작을 강제하는 "스나이퍼" 프로토콜입니다.
+*   **`fix_plan.md`**: 프로젝트 관리자. 완료된 항목 `[x]`과 남은 항목 `[ ]`을 추적합니다.
+*   **`specs/game.md`**: 우리가 만들고 있는 소프트웨어의 실제 요구 사항입니다.
+*   **`src/`**: 생성된 코드의 출력 디렉토리입니다.

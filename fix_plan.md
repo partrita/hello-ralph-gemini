@@ -1,16 +1,16 @@
-# Implementation Plan
+# 구현 계획
 
-## Todo
-- [ ] Create the project folder structure (`src/` folder and empty `main.py`)
-- [ ] Implement a function to generate a random number between 1-100
-- [ ] Implement a function to get user input
-- [ ] Implement the "Compare Guess" logic (returns High, Low, or Correct)
-- [ ] Create the main game loop connecting these functions
-- [ ] Add a "Game Over" or "Play Again" feature
-- [ ] Implement robust error handling for invalid user input (e.g., non-numeric gueses).
-- [ ] Implement a guess limit for the player
-- [ ] Implement a high score (fewest attempts) tracking feature
-- [ ] Add initial game instructions to be displayed at the start
-- [ ] Allow the user to set the maximum number of attempts.
+## 할 일
+- [ ] 프로젝트 폴더 구조 생성 (`src/` 폴더 및 빈 `main.py`)
+- [ ] 1-100 사이의 난수를 생성하는 함수 구현
+- [ ] 사용자 입력을 받는 함수 구현
+- [ ] "추측 비교" 로직 구현 (High, Low 또는 Correct 반환)
+- [ ] 이 함수들을 연결하는 메인 게임 루프 생성
+- [ ] "게임 오버" 또는 "다시 하기" 기능 추가
+- [ ] 잘못된 사용자 입력(예: 숫자가 아닌 추측)에 대한 견고한 에러 처리 구현
+- [ ] 플레이어의 추측 횟수 제한 구현
+- [ ] 최고 점수(최소 시도 횟수) 추적 기능 구현
+- [ ] 시작 시 표시될 초기 게임 지침 추가
+- [ ] 사용자가 최대 시도 횟수를 설정할 수 있도록 허용
 
-## Completed
+## 완료됨

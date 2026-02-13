@@ -1,9 +1,9 @@
-# Guess the Number Game Requirements
+# 숫자 맞추기 게임 요구 사항
 
-1. **Language:** Python 3.
-2. **Goal:** The program generates a random number between 1 and 100. The user tries to guess it.
-3. **Feedback:**
-   - If the guess is too high, print "Too high!"
-   - If the guess is too low, print "Too low!"
-   - If the guess is correct, print "You won!" and exit.
-4. **Input:** The game should handle invalid inputs (like letters) gracefully without crashing.
+1. **언어:** Python 3.
+2. **목표:** 프로그램은 1에서 100 사이의 난수를 생성합니다. 사용자는 이를 맞추려고 시도합니다.
+3. **피드백:**
+   - 추측이 너무 높으면 "Too high!"를 출력합니다.
+   - 추측이 너무 낮으면 "Too low!"를 출력합니다.
+   - 추측이 맞으면 "You won!"을 출력하고 종료합니다.
+4. **입력:** 게임은 문자 입력과 같은 잘못된 입력을 충돌 없이 우아하게 처리해야 합니다.
